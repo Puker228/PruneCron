@@ -18,9 +18,14 @@ func main() {
 		}
 		defer apiClient.Close()
 
-		_, error := apiClient.ContainerPrune(ctx, client.ContainerPruneOptions{})
-		if error != nil {
-			fmt.Printf("Error while prune containers: %v", error)
+		_, errorCont := apiClient.ContainerPrune(ctx, client.ContainerPruneOptions{})
+		if errorCont != nil {
+			fmt.Printf("Error while prune containers: %v", errorCont)
+		}
+
+		_, errorBuild := apiClient.BuildCachePrune(ctx, client.BuildCachePruneOptions{})
+		if errorBuild != nil {
+			fmt.Printf("Error while prune containers: %v", errorBuild)
 		}
 	})
 	c.Start()
