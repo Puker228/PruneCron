@@ -27,6 +27,16 @@ func main() {
 		if errorBuild != nil {
 			fmt.Printf("Error while prune containers: %v", errorBuild)
 		}
+
+		_, errorImage := apiClient.ImagePrune(ctx, client.ImagePruneOptions{})
+		if errorImage != nil {
+			fmt.Printf("Error while prune containers: %v", errorImage)
+		}
+
+		_, errorVolume := apiClient.VolumePrune(ctx, client.VolumePruneOptions{})
+		if errorVolume != nil {
+			fmt.Printf("Error while prune containers: %v", errorVolume)
+		}
 	})
 	c.Start()
 }
