@@ -4,7 +4,7 @@ go 1.25.5
 
 require (
 	github.com/moby/moby/client v0.2.1
-	github.com/robfig/cron v1.2.0
+	github.com/robfig/cron/v3 v3.0.1
 )
 
 require (

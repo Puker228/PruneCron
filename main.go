@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/moby/moby/client"
-	"github.com/robfig/cron"
+	"github.com/robfig/cron/v3"
 )
 
 func main() {
