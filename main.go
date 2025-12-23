@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os/exec"
 
 	"github.com/moby/moby/client"
 )
@@ -25,13 +26,10 @@ func main() {
 		fmt.Printf("Error while prune containers: %v", errorBuild)
 	}
 
-	f := make(client.Filters).Add("dangling", "true")
-	_, errorImage := apiClient.ImagePrune(ctx, client.ImagePruneOptions{
-		Filters: f,
-	})
-
-	if errorImage != nil {
-		fmt.Printf("Error while prune containers: %v", errorImage)
+	cmd := exec.Command("docker", "image", "prune", "-a", "-f")
+	imageError := cmd.Run()
+	if imageError != nil {
+		fmt.Println("Error while prune images")
 	}
 
 	_, errorVolume := apiClient.VolumePrune(ctx, client.VolumePruneOptions{})
