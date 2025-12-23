@@ -27,9 +27,9 @@ func main() {
 	}
 
 	cmd := exec.Command("docker", "image", "prune", "-a", "-f")
-	imageError := cmd.Run()
-	if imageError != nil {
-		fmt.Println("Error while prune images")
+	errorImage := cmd.Run()
+	if errorImage != nil {
+		fmt.Printf("Error while prune images: %v", errorImage)
 	}
 
 	_, errorVolume := apiClient.VolumePrune(ctx, client.VolumePruneOptions{})
