@@ -25,7 +25,11 @@ func main() {
 		fmt.Printf("Error while prune containers: %v", errorBuild)
 	}
 
-	_, errorImage := apiClient.ImagePrune(ctx, client.ImagePruneOptions{})
+	f := make(client.Filters).Add("dangling", "true")
+	_, errorImage := apiClient.ImagePrune(ctx, client.ImagePruneOptions{
+		Filters: f,
+	})
+
 	if errorImage != nil {
 		fmt.Printf("Error while prune containers: %v", errorImage)
 	}
