@@ -1,4 +1,4 @@
-module github.com/Puker228/PruneCrone
+module github.com/Puker228/DockerPruneCron
 
 go 1.25.5
 
